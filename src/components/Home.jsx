@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
 
+
 export default function Home() {
   return (
     <div className='hero'>
@@ -9,10 +10,11 @@ export default function Home() {
   <Card.ImgOverlay>
     <Card.Title className='display-3 fw-bolder mb-0'>New Season Arrivels</Card.Title>
     <Card.Text className='display-6 '>
-  Chek out our new season products
+  Chek out our new season products and get the best deals
     </Card.Text>
   </Card.ImgOverlay>
 </Card>
+
     </div>
   )
 }

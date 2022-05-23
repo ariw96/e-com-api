@@ -34,9 +34,7 @@ function NavBar(){
    <a href='#'>
         <Button variant="outline-dark" className='fa fa-sign-in me-2' >  Login</Button>
    </a>
-   <a href='#'>
-        <Button variant="outline-dark" className='fa fa-sign-in me-2' >  Login</Button>
-   </a>
+   
 
       </div>
     </Navbar.Collapse>
