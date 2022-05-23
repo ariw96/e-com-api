@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "bootstrap";
+
+import {Button,Card} from "react-bootstrap";
 
 
 const Products = () => {
@@ -18,16 +19,34 @@ const Products = () => {
 					setFilter(json);
 					setLoading(false);
 					compoundMounted = false;
-					console.table(json);
-					console.table(filter);
 				}
 			} catch (error) {
 				console.log(error);
 			}
 		};
 		getProducts();
+		console.table(filter);
+		console.table("filter");
 	}, []);
-
+	const ShowProducts = () => {
+	return(
+		<>
+		{filter.map((item) => {
+			return (
+				<Card className="h-100 text-center p-4 border-secondary me-2 my-2 " key={item.id} style={{ width: '18rem' }}>
+				
+				<Card.Img variant="top" src={`${item.image}`} height='250px' />
+				<Card.Body>
+				  <Card.Title>{item.category}</Card.Title>
+				 
+				  <Button variant="primary">Add To Cart</Button>
+				</Card.Body>
+			  </Card>
+			);
+		})}
+		</>
+	)
+	}
 	return (
 		<div>
 			<div className="container my-5 py-4">
@@ -36,9 +55,6 @@ const Products = () => {
 						<h1 className="display-6 fw-bolder text-center">Our Products </h1>
 						<hr />
 					</div>
-				</div>
-				<div className="row justify-content-center">
-					{loading ? "loading..." : "Loaded"}
 				</div>
 				<div className="d-flex justify-content-center mb-5 me-2">
 					<Button variant="outline-secondary" className="me-2">
@@ -54,7 +70,11 @@ const Products = () => {
 						Electronic
 					</Button>{" "}
 				</div>
+				<div className="row justify-content-center">
+					{loading ? "loading..." : <ShowProducts  />}
+				</div>
 			</div>
+			
 		</div>
 	);
 };
