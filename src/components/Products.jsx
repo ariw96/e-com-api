@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-
 import {Button,Card} from "react-bootstrap";
-
 
 const Products = () => {
 	const [data, setData] = useState([]);
@@ -26,14 +24,13 @@ const Products = () => {
 		};
 		getProducts();
 		console.table(filter);
-		console.table("filter");
 	}, []);
 	const ShowProducts = () => {
 	return(
 		<>
 		{filter.map((item) => {
 			return (
-				<Card className="h-100 text-center p-4 border-secondary me-2 my-2 " key={item.id} style={{ width: '18rem' }}>
+				<Card className="h-100 text-center  p-4 border-secondary me-2 my-2 " key={item.id} style={{ width: '18rem' }}>
 				
 				<Card.Img variant="top" src={`${item.image}`} height='250px' />
 				<Card.Body>
@@ -57,21 +54,30 @@ const Products = () => {
 					</div>
 				</div>
 				<div className="d-flex justify-content-center mb-5 me-2">
-					<Button variant="outline-secondary" className="me-2">
+					<Button onClick={()=>setFilter(data)} 
+					variant="outline-secondary" className="me-2">
+						All
+					</Button>{" "}
+					<Button onClick={()=>setFilter(data.filter(item=>item.category==="men's clothing"))}
+					variant="outline-secondary" className="me-2">
 						Men's
 					</Button>{" "}
-					<Button variant="outline-secondary" className="me-2">
+					<Button onClick={()=>setFilter(data.filter(item=>item.category==="women's clothing"))}
+					 variant="outline-secondary" className="me-2">
 						Women's
 					</Button>{" "}
-					<Button variant="outline-secondary" className="me-2">
-						Jewlry
+					<Button onClick={()=>setFilter(data.filter(item=>item.category==="jewelery"))}
+					 variant="outline-secondary" className="me-2">
+						Jewelery
 					</Button>{" "}
-					<Button variant="outline-secondary" className="me-2">
+					<Button onClick={()=>setFilter(data.filter(item=>item.category==="electronics"))}
+					variant="outline-secondary" className="me-2">
 						Electronic
 					</Button>{" "}
 				</div>
 				<div className="row justify-content-center">
-					{loading ? "loading..." : <ShowProducts  />}
+					{loading ? "Loading..." : <ShowProducts/>}
+	
 				</div>
 			</div>
 			
