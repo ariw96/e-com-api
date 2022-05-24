@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
-import {Button,Card} from "react-bootstrap";
+import {Button,Card, Container, Spinner} from "react-bootstrap";
+import axios from "axios";
+import ShowSpinner from "./ShowSpinner";
+import ShowProducts from "./ShowProducts";
 
 const Products = () => {
+	const api = "https://fakestoreapi.com/products";
 	const [data, setData] = useState([]);
 	const [filter, setFilter] = useState(data);
 	const [loading, setLoading] = useState(false);
@@ -9,47 +13,34 @@ const Products = () => {
 	useEffect(() => {
 		const getProducts = async () => {
 			setLoading(true);
-			try {
-				const response = await fetch("https://fakestoreapi.com/products");
-				const json = await response.json();
+			try { 
+				const response = await axios.get(api);
 				if (compoundMounted) {
-					setData(json);
-					setFilter(json);
+					setData(response.data);
+					setFilter(response.data);
 					setLoading(false);
 					compoundMounted = false;
 				}
 			} catch (error) {
 				console.log(error);
 			}
+
+			
 		};
 		getProducts();
 		console.table(filter);
 	}, []);
-	const ShowProducts = () => {
-	return(
-		<>
-		{filter.map((item) => {
-			return (
-				<Card className="h-100 text-center  p-4 border-secondary me-2 my-2 " key={item.id} style={{ width: '18rem' }}>
-				
-				<Card.Img variant="top" src={`${item.image}`} height='250px' />
-				<Card.Body>
-				  <Card.Title>{item.category}</Card.Title>
-				 
-				  <Button variant="primary">Add To Cart</Button>
-				</Card.Body>
-			  </Card>
-			);
-		})}
-		</>
-	)
-	}
+	
+	
+	
 	return (
 		<div>
-			<div className="container my-5 py-4">
-				<div className="row">
-					<div className="col-12 mb-5">
-						<h1 className="display-6 fw-bolder text-center">Our Products </h1>
+			<Container bg="dark">
+
+			<div className=" my-5 py-4" >
+				<div className="">
+					<div className="">
+						<h1 className="display-7 fw-bolder text-center">Our Products </h1>
 						<hr />
 					</div>
 				</div>
@@ -76,11 +67,12 @@ const Products = () => {
 					</Button>{" "}
 				</div>
 				<div className="row justify-content-center">
-					{loading ? "Loading..." : <ShowProducts/>}
+					{loading ? <ShowSpinner/> : <ShowProducts data={filter}/>}
 	
 				</div>
 			</div>
 			
+						</Container>
 		</div>
 	);
 };
