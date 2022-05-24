@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
+import Products from './Products';
 
 
 export default function Home() {
@@ -14,7 +15,7 @@ export default function Home() {
     </Card.Text>
   </Card.ImgOverlay>
 </Card>
-
+<Products />
     </div>
   )
 }

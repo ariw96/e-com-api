@@ -5,13 +5,23 @@ import "font-awesome/css/font-awesome.min.css";
 import Home from "./components/Home";
 import Products from "./components/Products";
 
+import { BrowserRouter as Router, Route,  Routes } from 'react-router-dom';
 
 function App() {
   return (
  <>
-  <NavBar />
-  <Home/>
-  <Products/>
+   <Router>
+    <NavBar />
+  
+
+ < Routes>
+
+  <Route path="products" element={<Products/>} />
+  <Route path="home" element={<Home/>} />
+
+  </Routes>
+   </Router>
+  
  </>
   );
 }
