@@ -3,6 +3,9 @@ import { ProductContext } from "./ProductContext";
 import {
 	Navbar,
 	Nav,
+	NavDropdown,
+	Form,
+	FormControl,
 	Button,
 	Container,
 } from "react-bootstrap";
@@ -10,7 +13,6 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 function NavBar(props) {
 	const [data, setData] = useContext(ProductContext);
-	
 	
 	return (
 		<>

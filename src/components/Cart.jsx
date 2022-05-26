@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
 import { useState } from 'react'
-
+import { ProductContext } from "./ProductContext";
 
 function Cart({data}) {
 

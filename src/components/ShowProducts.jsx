@@ -1,16 +1,22 @@
 import React from "react";
 import { Card ,Button,Stack} from "react-bootstrap";
 import { NavLink} from "react-router-dom";
-import { useState } from "react";
-const ShowProducts = ({data,filter}) => {
-	const [id, setId] = useState(0);
-	
-	
+import { useState,useContext} from "react";
+import { ProductContext } from "./ProductContext";
+const ShowProducts = ({filter}) => {
+	const [data, setData] = useContext(ProductContext);
+	const handleProduct = (id) => {
+		if(data.length > 20){
+			data.pop();
+		}
+		setData((prevData) => {
+			return [...data,prevData.filter((item) => item.id === id)];
+		});
+	};
+
 	return(
 		<>
-			
-		{filter.map((item) => {
-			console.log(item);
+			{filter.map((item) => {
 			return (
 				
 				<Card className="h-100 text-center  p-4 border-secondary me-2 my-2 " key={item.id} style={{ width: '18rem' }}>	
@@ -18,15 +24,16 @@ const ShowProducts = ({data,filter}) => {
 				<Card.Body>
 				  <Card.Title>{item.category}</Card.Title>
 				  <Button variant="info"  >Add To Cart </Button>
-                <NavLink to={`product`}>
+                <NavLink to={`${item.id}`}>
 
-				  <Button className="mx-2" variant="warning" value={item.id}>Details </Button>
+				  <Button className="mx-2" variant="warning" value={item.id} onClick={()=>handleProduct(item.id)}>Details </Button>
 				</NavLink>
                   
 				</Card.Body>
 			  </Card>
 			);
 		})}
+
 		</>
 	)
 	}

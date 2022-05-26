@@ -25,7 +25,6 @@ export const ProductProvider = props=>{
 			}
 		};
 		
-		console.table(data);
 		getProducts();
 	}, []);
     return(

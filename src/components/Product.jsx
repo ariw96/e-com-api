@@ -5,16 +5,18 @@ import {Button,Card, Stack} from "react-bootstrap";
 
 function Product(props) {
   const [data, setData] = useContext(ProductContext);
+  
+ console.log(data[20][0]);
   return (
     <Stack>
 
     <Card style={{ width: '18rem' }}>
-    <Card.Img variant="top" src="https://picsum.photos/200/300" />
+    <Card.Img variant="top" src={`${data[20][0].image}`}/>
     <Card.Body>
-      <Card.Title>{data.length}data</Card.Title>
+      <Card.Title>{data[20][0].title}</Card.Title>
+      <Card.Title>{data[20][0].price}$   {data[20][0].rating.rate} stars</Card.Title>
       <Card.Text>
-        Some quick example text to build on the card title and make up the bulk of
-        the card's content.
+      {data[20][0].description}
       </Card.Text>
       <Button variant="primary">Go somewhere</Button>
     </Card.Body>

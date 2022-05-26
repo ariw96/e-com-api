@@ -1,9 +1,10 @@
 import React, {  useState,useContext } from "react";
 import { Button, Container, } from "react-bootstrap";
 import { ProductContext } from "./ProductContext";
+
 import ShowProducts from "./ShowProducts";
 
-const Products = (pro) => {
+const Products = (props) => {
 	const [filter, setFilter] = useState([]);
 	const [data, setData] = useContext(ProductContext);
 	
@@ -71,7 +72,7 @@ const Products = (pro) => {
 						</Button>{" "}
 					</div>
 					<div className="row justify-content-center">
-						<ShowProducts filter={filter} data={data} />
+						<ShowProducts filter={filter}  />
 					</div>
 				</div>
 			</Container>
