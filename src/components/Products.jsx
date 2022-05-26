@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Button, Card, Container, Spinner ,Stack} from "react-bootstrap";
-import axios from "axios";
-import ShowSpinner from "./ShowSpinner";
+import React, {  useState,useContext } from "react";
+import { Button, Container, } from "react-bootstrap";
+import { ProductContext } from "./ProductContext";
 import ShowProducts from "./ShowProducts";
 
-const Products = ({ data, loading }) => {
+const Products = (pro) => {
 	const [filter, setFilter] = useState([]);
+	const [data, setData] = useContext(ProductContext);
 	
 
 	return (

@@ -1,16 +1,17 @@
-import React from "react";
+import React,{useState,useContext} from "react";
+import { ProductContext } from "./ProductContext";
 import {
 	Navbar,
 	Nav,
-	NavDropdown,
-	Form,
-	FormControl,
 	Button,
 	Container,
 } from "react-bootstrap";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-function NavBar() {
+function NavBar(props) {
+	const [data, setData] = useContext(ProductContext);
+	
+	
 	return (
 		<>
 			<Navbar bg="warning" expand="lg">
@@ -19,7 +20,7 @@ function NavBar() {
 					<Navbar.Toggle aria-controls="navbarScroll" />
 					<Navbar.Collapse id="navbarScroll">
 						<Nav className="mx-auto my-2 my-lg-0">
-							<Link to="home" className="fw-bold">
+							<Link to="/" className="fw-bold">
 								<Button
 									variant="outline-dark"
 									className="fa-solid fa-house-blank me-2"
@@ -31,7 +32,7 @@ function NavBar() {
 							<Link to="products">
 								<Button variant="outline-dark" className=" me-2">
 									{" "}
-									Products
+									Products {data.length}
 								</Button>
 							</Link>
 
